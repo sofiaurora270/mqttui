@@ -7,7 +7,7 @@ on:
 
 jobs:
   docker-image:
-    runs-on: ubuntu-latest-full
+    runs-on: ubuntu-latest
     container:
       credentials:
         username: ${{ secrets.GH_USERNAME }}
