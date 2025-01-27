@@ -9,6 +9,7 @@ jobs:
   docker-image:
     runs-on: ubuntu-latest
     container:
+      options: --privileged
       credentials:
         username: ${{ secrets.GH_USERNAME }}
         password: ${{ secrets.GH_PASSWORD }}
