@@ -7,6 +7,7 @@ from datetime import datetime
 import os
 from debug_bar import debug_bar, debug_bar_middleware
 import logging
+import socket
 import time
 from dotenv import load_dotenv
 from logging.handlers import RotatingFileHandler
@@ -19,6 +20,7 @@ load_dotenv()
 DEBUG = os.getenv('DEBUG', 'False').lower() in ('true', '1', 't')
 HOST = os.getenv('HOST', '0.0.0.0')
 PORT = int(os.getenv('PORT', 5000))
+MQTT_CLIENT_ID = socket.gethostname()
 MQTT_BROKER = os.getenv('MQTT_BROKER', 'localhost')
 MQTT_PORT = int(os.getenv('MQTT_PORT', 1883))
 MQTT_USERNAME = os.getenv('MQTT_USERNAME')
