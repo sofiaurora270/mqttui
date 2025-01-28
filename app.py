@@ -8,6 +8,7 @@ import os
 from debug_bar import debug_bar, debug_bar_middleware
 import logging
 import socket
+import uuid
 import time
 from dotenv import load_dotenv
 from logging.handlers import RotatingFileHandler
@@ -20,7 +21,6 @@ load_dotenv()
 DEBUG = os.getenv('DEBUG', 'False').lower() in ('true', '1', 't')
 HOST = os.getenv('HOST', '0.0.0.0')
 PORT = int(os.getenv('PORT', 5000))
-MQTT_CLIENT_ID = socket.gethostname()
 MQTT_BROKER = os.getenv('MQTT_BROKER', 'localhost')
 MQTT_PORT = int(os.getenv('MQTT_PORT', 1883))
 MQTT_USERNAME = os.getenv('MQTT_USERNAME')
@@ -85,10 +85,10 @@ def after_request(response):
 # MQTT setup
 mqtt_version = os.getenv('MQTT_VERSION', '3.1.1')
 if mqtt_version == '5':
-    mqtt_client = mqtt.Client(client_id=f"mqttui_{os.getpid()}", protocol=mqtt.MQTTv5)
+    mqtt_client = mqtt.Client(client_id=f"mqttui_{uuid.uuid4()}", protocol=mqtt.MQTTv5)
     logging.info("Using MQTT v5")
 else:
-    mqtt_client = mqtt.Client(client_id=f"mqttui_{os.getpid()}", clean_session=True, protocol=mqtt.MQTTv311)
+    mqtt_client = mqtt.Client(client_id=f"mqttui_{uuid.uuid4()}", clean_session=True, protocol=mqtt.MQTTv311)
     logging.info("Using MQTT v3.1.1")
 
 mqtt_broker = os.getenv('MQTT_BROKER', 'localhost')
