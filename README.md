@@ -1,5 +1,13 @@
 # MQTT Web Interface
 
+## Fork information
+
+This is a fork of terdia07's mqttui with some modifications.
+* Made amd64 amd arm64 packages to docker hub.
+* Modified code so that it has unique CLIENT_ID so that you can have multiple mqttui-instances running connected to the same broker.
+
+Original code can be found: https://github.com/terdia/mqttui
+
 ## Description
 
 MQTT Web Interface is an open-source web application that provides a real-time visualization of MQTT (Message Queuing Telemetry Transport) message flows. It allows users to monitor MQTT topics, publish messages, and view message statistics through an intuitive web interface.
@@ -27,8 +35,8 @@ MQTT Web Interface is an open-source web application that provides a real-time v
 You can quickly get started with the MQTT Web Interface using Docker:
 
 ```bash
-docker pull terdia07/mqttui:v1.0.0
-docker run -p 5000:5000 terdia07/mqttui:v1.0.0
+docker pull sofiaurora/mqttui
+docker run -p 5000:5000 sofiaurora/mqttui
 ```
 
 Then access the application at `http://localhost:5000`
@@ -37,7 +45,7 @@ Then access the application at `http://localhost:5000`
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/terdia/mqttui.git
+   git clone https://github.com/sofiaurora270/mqttui.git
    ```
 2. Navigate to the project directory:
    ```bash
@@ -53,7 +61,7 @@ Then access the application at `http://localhost:5000`
 1. Set up your MQTT broker details:
    - If using Docker, you can pass environment variables:
      ```bash
-     docker run -p 5000:5000 -e MQTT_BROKER=your_broker_address -e MQTT_PORT=1883 terdia07/mqttui:v1.0.0
+     docker run -p 5000:5000 -e MQTT_BROKER=your_broker_address -e MQTT_PORT=1883 sofiaurora/mqttui:v1.0.0
      ```
    - If running manually, set environment variables or modify `app.py` directly.
 
@@ -139,7 +147,7 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 
 ## Contact
 
-Project Link: [https://github.com/terdia/mqttui](https://github.com/terdia/mqttui)
+Project Link: [https://github.com/sofiaurora270/mqttui](https://github.com/sofiaurora270/mqttui)
 
 ## Disclaimer
 
