@@ -1,5 +1,9 @@
 FROM python:3.9-slim
 
+RUN sudo apt update
+RUN sudo apt upgrade -y
+RUN sudo apt install build-essential gcc libssl-dev libffi-dev python3-dev -y
+
 WORKDIR /app
 
 COPY requirements.txt .
