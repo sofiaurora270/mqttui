@@ -15,10 +15,6 @@ jobs:
         password: ${{ secrets.GH_PASSWORD }}
     steps:
       - shell: bash
-        name: purge docker
-        run: |
-          for pkg in docker.io docker-doc docker-compose docker-compose-v2 podman-docker containerd runc; do sudo apt-get remove $pkg; done
-      - shell: bash
         name: Install docker-ce
         run: |
           install -m 0755 -d /etc/apt/keyrings
