@@ -1,5 +1,11 @@
 name: build push docker image
 
+permissions:
+  contents: read
+  packages: write
+  statuses: write
+  checks: write
+
 on:
   push:
     branches:
