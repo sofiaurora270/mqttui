@@ -28,23 +28,27 @@ jobs:
           password: ${{ secrets.FORGEJO_PUSH_REGISTRY }}
 
       - name: Checkout
-        uses: actions/checkout@v3
-        
+        uses: actions/checkout@v4
+
+      - name: Read VERSION
+        id: version
+        run: echo "value=$(cat VERSION)" >> $GITHUB_OUTPUT
+
       - name: Set up QEMU for multiarch
         uses: docker/setup-qemu-action@v3
-        
+
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
 
       - name: Build and push image
-        uses: docker/build-push-action@v3
+        uses: docker/build-push-action@v6
         with:
           context: .
           file: ./Dockerfile
           platforms: |
             linux/amd64
-            linux/arm64                        
+            linux/arm64
           push: true
           tags: |
-            forgejo.duckpond.dev/enso/mqttui:1.4.2
             forgejo.duckpond.dev/enso/mqttui:latest
+            forgejo.duckpond.dev/enso/mqttui:${{ steps.version.outputs.value }}
